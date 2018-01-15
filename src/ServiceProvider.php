@@ -3,7 +3,7 @@
 namespace QDL;
 
 
-class ServiceProvider extends Illuminate\Support\ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * Bootstrap the application services.
