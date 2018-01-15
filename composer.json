@@ -1,0 +1,27 @@
+{
+    "name": "ratno/qdl",
+    "description": "QD Laravel Library",
+    "authors": [
+        {
+            "name": "ratno putro sulistiyono",
+            "email": "ratno@knoqdown.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "QDL\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "QDL\\ServiceProvider",
+                "QDL\\RouteServiceProvider"
+            ]
+        }
+    }
+}
