@@ -12,7 +12,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-
+        if(class_exists(\App\Providers\RepositoryServiceProvider::class)) {
+            \App::register(\App\Providers\RepositoryServiceProvider::class);
+        }
     }
 
     /**
