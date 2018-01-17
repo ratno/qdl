@@ -47,9 +47,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->namespace."\\Web")
-             ->group(base_path('routes/qdl_web.php'));
+        $web_routes_file = base_path('routes/qdl_web.php');
+        if(file_exists($web_routes_file)) {
+            Route::middleware('web')
+                ->namespace($this->namespace."\\Web")
+                ->group($web_routes_file);
+        }
     }
 
     /**
@@ -61,9 +64,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace."\\Api")
-             ->group(base_path('routes/qdl_api.php'));
+        $api_routes_file = base_path('routes/qdl_api.php');
+        if(file_exists($api_routes_file)) {
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace."\\Api")
+                ->group($api_routes_file);
+        }
     }
 }
