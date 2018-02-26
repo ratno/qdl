@@ -18,7 +18,12 @@ if (!function_exists('comment')) {
 }
 
 if (!function_exists('read_comment')) {
-    function read_comment($comment,$index) {
-        return \QDL\Comment::decrypt($comment,$index);
+    function read_comment($comment,$index=null) {
+        $objComment = new \QDL\Comment($comment,true);
+        if(is_null($index)) {
+            return $objComment;
+        } else {
+            return $objComment->getByIndex($index);
+        }
     }
 }
