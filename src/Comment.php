@@ -64,6 +64,10 @@ class Comment
         return $this;
     }
 
+    /**
+     * @param $value
+     * @return \QDL\Comment
+     */
     public function title($value) {
         $this->comments[Comment::TITLE] = $value;
         return $this;
@@ -73,6 +77,9 @@ class Comment
         return $this->getByIndex(Comment::TITLE);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function tostring() {
         $this->comments[Comment::TOSTRING] = 1;
         return $this;
@@ -82,6 +89,9 @@ class Comment
         return $this->getByIndex(Comment::TOSTRING);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function filter_hide() {
         $this->comments[Comment::DEFAULT_FILTER_VISIBILITY] = 0;
         return $this;
@@ -91,6 +101,9 @@ class Comment
         return $this->getByIndex(Comment::DEFAULT_FILTER_VISIBILITY);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function grid_hide() {
         $this->comments[Comment::DEFAULT_GRID_VISIBILITY] = 0;
         return $this;
@@ -100,6 +113,9 @@ class Comment
         return $this->getByIndex(Comment::DEFAULT_GRID_VISIBILITY);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function detail_hide() {
         $this->comments[Comment::DEFAULT_DETAIL_VISIBILITY] = 0;
         return $this;
@@ -109,6 +125,9 @@ class Comment
         return $this->getByIndex(Comment::DEFAULT_DETAIL_VISIBILITY);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_hide() {
         $this->comments[Comment::DEFAULT_FORM_VISIBILITY] = 0;
         return $this;
@@ -118,6 +137,9 @@ class Comment
         return $this->getByIndex(Comment::DEFAULT_FORM_VISIBILITY);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function grid_column_width($val) {
         $this->comments[Comment::GRID_WIDTH] = $val;
         return $this;
@@ -127,6 +149,9 @@ class Comment
         return $this->getByIndex(Comment::GRID_WIDTH);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function model_hidden() {
         $this->comments[Comment::MODEL_HIDDEN] = 1;
         return $this;
@@ -136,6 +161,9 @@ class Comment
         return $this->getByIndex(Comment::MODEL_HIDDEN);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_repeat() {
         $this->comments[Comment::FORM_REPEAT] = 1;
         return $this;
@@ -145,6 +173,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_REPEAT);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_max_length($val) {
         $this->comments[Comment::FORM_MAX_LENGTH] = $val;
         return $this;
@@ -154,6 +185,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_MAX_LENGTH);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_min_length($val) {
         $this->comments[Comment::FORM_MIN_LENGTH] = $val;
         return $this;
@@ -163,6 +197,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_MIN_LENGTH);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_max_value($val) {
         $this->comments[Comment::FORM_MAX_VALUE] = $val;
         return $this;
@@ -172,6 +209,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_MAX_VALUE);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_min_value($val) {
         $this->comments[Comment::FORM_MIN_VALUE] = $val;
         return $this;
@@ -181,6 +221,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_MIN_VALUE);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_alpha() {
         $this->comments[Comment::FORM_ALPHA] = 1;
         return $this;
@@ -190,6 +233,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_ALPHA);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_alpha_num() {
         $this->comments[Comment::FORM_ALPHA_NUM] = 1;
         return $this;
@@ -199,6 +245,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_ALPHA_NUM);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_numeric() {
         $this->comments[Comment::FORM_NUMERIC] = 1;
         return $this;
@@ -208,6 +257,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_NUMERIC);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_email() {
         $this->comments[Comment::FORM_EMAIL] = 1;
         return $this;
@@ -217,6 +269,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_EMAIL);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_autocomplete() {
         $this->comments[Comment::FORM_AUTOCOMPLETE] = 1;
         return $this;
@@ -226,6 +281,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_AUTOCOMPLETE);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_radio() {
         $this->comments[Comment::FORM_RADIO] = 1;
         return $this;
@@ -235,6 +293,9 @@ class Comment
         return $this->getByIndex(Comment::FORM_RADIO);
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_chain_to($fields) {
         $this->comments[Comment::FORM_CHAIN_TO] = implode(",",$fields);
         return $this;
@@ -244,6 +305,9 @@ class Comment
         return explode(",",$this->getByIndex(Comment::FORM_CHAIN_TO));
     }
 
+    /**
+     * @return \QDL\Comment
+     */
     public function form_chain_from($fields) {
         $this->comments[Comment::FORM_CHAIN_FROM] = implode(",",$fields);
         return $this;
