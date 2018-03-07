@@ -30,35 +30,39 @@ class Comment
     const FORM_CHAIN_TO = 21;
     const FORM_CHAIN_FROM = 22;
 
+    protected function defaultComment($comment = "") {
+        $this->comments = [
+            Comment::COMMENT => $comment,
+            Comment::TITLE => "",
+            Comment::TOSTRING => "",
+            Comment::DEFAULT_FILTER_VISIBILITY => 1,
+            Comment::DEFAULT_GRID_VISIBILITY => 1,
+            Comment::DEFAULT_DETAIL_VISIBILITY => 1,
+            Comment::DEFAULT_FORM_VISIBILITY => 1,
+            Comment::GRID_WIDTH => 120,
+            Comment::MODEL_HIDDEN => 0,
+            Comment::FORM_REPEAT => 0,
+            Comment::FORM_MAX_LENGTH => -1,
+            Comment::FORM_MIN_LENGTH => -1,
+            Comment::FORM_MAX_VALUE => -1,
+            Comment::FORM_MIN_VALUE => -1,
+            Comment::FORM_ALPHA => -1,
+            Comment::FORM_ALPHA_NUM => -1,
+            Comment::FORM_NUMERIC => -1,
+            Comment::FORM_EMAIL => -1,
+            Comment::FORM_AUTOCOMPLETE => -1,
+            Comment::FORM_RADIO => -1,
+            Comment::FORM_CHAIN_TO => "",
+            Comment::FORM_CHAIN_FROM => "",
+        ];
+    }
+
     public function __construct($comment = "", $decrypt = false)
     {
         if($decrypt) {
             $this->comments = Comment::decrypt($comment);
         } else {
-            $this->comments = [
-                Comment::COMMENT => $comment,
-                Comment::TITLE => "",
-                Comment::TOSTRING => "",
-                Comment::DEFAULT_FILTER_VISIBILITY => 1,
-                Comment::DEFAULT_GRID_VISIBILITY => 1,
-                Comment::DEFAULT_DETAIL_VISIBILITY => 1,
-                Comment::DEFAULT_FORM_VISIBILITY => 1,
-                Comment::GRID_WIDTH => 120,
-                Comment::MODEL_HIDDEN => 0,
-                Comment::FORM_REPEAT => 0,
-                Comment::FORM_MAX_LENGTH => -1,
-                Comment::FORM_MIN_LENGTH => -1,
-                Comment::FORM_MAX_VALUE => -1,
-                Comment::FORM_MIN_VALUE => -1,
-                Comment::FORM_ALPHA => -1,
-                Comment::FORM_ALPHA_NUM => -1,
-                Comment::FORM_NUMERIC => -1,
-                Comment::FORM_EMAIL => -1,
-                Comment::FORM_AUTOCOMPLETE => -1,
-                Comment::FORM_RADIO => -1,
-                Comment::FORM_CHAIN_TO => "",
-                Comment::FORM_CHAIN_FROM => "",
-            ];
+            $this->defaultComment($comment);
         }
 
         return $this;
@@ -97,7 +101,7 @@ class Comment
         return $this;
     }
 
-    public function getFilterHide() {
+    public function getFilterVisible() {
         return $this->getByIndex(Comment::DEFAULT_FILTER_VISIBILITY);
     }
 
@@ -109,7 +113,7 @@ class Comment
         return $this;
     }
 
-    public function getGridHide() {
+    public function getGridVisible() {
         return $this->getByIndex(Comment::DEFAULT_GRID_VISIBILITY);
     }
 
@@ -121,7 +125,7 @@ class Comment
         return $this;
     }
 
-    public function getDetailHide() {
+    public function getDetailVisible() {
         return $this->getByIndex(Comment::DEFAULT_DETAIL_VISIBILITY);
     }
 
@@ -133,7 +137,7 @@ class Comment
         return $this;
     }
 
-    public function getFormHide() {
+    public function getFormVisible() {
         return $this->getByIndex(Comment::DEFAULT_FORM_VISIBILITY);
     }
 
@@ -329,11 +333,19 @@ class Comment
     }
     
     public function getByIndex($index) {
-        $value = $this->getByIndex($index);
-        if($value == -1) {
-            return null;
+        if(count($this->comments) == 1) {
+            $this->defaultComment($this->comments[Comment::COMMENT]);
+        }
+
+        if(array_key_exists($index,$this->comments)) {
+            $value = $this->comments[$index];
+            if($value == -1) {
+                return null;
+            } else {
+                return $value;
+            }
         } else {
-            return $value;
+            return null;
         }
     }
 
