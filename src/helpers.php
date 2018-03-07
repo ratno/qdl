@@ -11,9 +11,9 @@ if (!function_exists('from_camel_case')) {
 }
 
 if (!function_exists('comment')) {
-    function comment($comment="",$decrypt=false)
+    function comment($comment="")
     {
-        return new \QDL\Comment($comment,$decrypt);
+        return new \QDL\Comment($comment,false);
     }
 }
 
