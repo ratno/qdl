@@ -29,6 +29,7 @@ class Comment
     const FORM_RADIO = 20;
     const FORM_CHAIN_TO = 21;
     const FORM_CHAIN_FROM = 22;
+    const FORM_PASSWORD = 23;
 
     protected function defaultComment($comment = "") {
         $this->comments = [
@@ -54,6 +55,7 @@ class Comment
             Comment::FORM_RADIO => -1,
             Comment::FORM_CHAIN_TO => "",
             Comment::FORM_CHAIN_FROM => "",
+            Comment::FORM_PASSWORD => 0,
         ];
     }
 
@@ -319,6 +321,18 @@ class Comment
 
     public function getFormChainFrom() {
         return explode(",",$this->getByIndex(Comment::FORM_CHAIN_FROM));
+    }
+
+    /**
+     * @return \QDL\Comment
+     */
+    public function form_password() {
+        $this->comments[Comment::FORM_PASSWORD] = 1;
+        return $this;
+    }
+
+    public function getFormPassword() {
+        return $this->getByIndex(Comment::FORM_PASSWORD);
     }
 
     public function __toString()
