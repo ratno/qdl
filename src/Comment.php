@@ -30,17 +30,18 @@ class Comment
     const FORM_CHAIN_TO = 21;
     const FORM_CHAIN_FROM = 22;
     const FORM_PASSWORD = 23;
+    const GRID_FIXED = 24;
 
     protected function defaultComment($comment = "") {
         $this->comments = [
             Comment::COMMENT => $comment,
             Comment::TITLE => "",
-            Comment::TOSTRING => "",
+            Comment::TOSTRING => 0,
             Comment::DEFAULT_FILTER_VISIBILITY => 1,
             Comment::DEFAULT_GRID_VISIBILITY => 1,
             Comment::DEFAULT_DETAIL_VISIBILITY => 1,
             Comment::DEFAULT_FORM_VISIBILITY => 1,
-            Comment::GRID_WIDTH => 120,
+            Comment::GRID_WIDTH => 160,
             Comment::MODEL_HIDDEN => 0,
             Comment::FORM_REPEAT => 0,
             Comment::FORM_MAX_LENGTH => -1,
@@ -56,6 +57,7 @@ class Comment
             Comment::FORM_CHAIN_TO => "",
             Comment::FORM_CHAIN_FROM => "",
             Comment::FORM_PASSWORD => 0,
+            Comment::GRID_FIXED => 0,
         ];
     }
 
@@ -333,6 +335,18 @@ class Comment
 
     public function getFormPassword() {
         return $this->getByIndex(Comment::FORM_PASSWORD);
+    }
+
+    /**
+     * @return \QDL\Comment
+     */
+    public function grid_fixed() {
+        $this->comments[Comment::GRID_FIXED] = 1;
+        return $this;
+    }
+
+    public function getGridFixed() {
+        return $this->getByIndex(Comment::GRID_FIXED);
     }
 
     public function __toString()
