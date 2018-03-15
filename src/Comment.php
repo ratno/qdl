@@ -305,24 +305,36 @@ class Comment
      * @return \QDL\Comment
      */
     public function form_chain_to($fields) {
-        $this->comments[Comment::FORM_CHAIN_TO] = implode(",",$fields);
+        if(is_array($fields) && count($fields)) {
+            $this->comments[Comment::FORM_CHAIN_TO] = implode(",", $fields);
+        }
         return $this;
     }
 
     public function getFormChainTo() {
-        return explode(",",$this->getByIndex(Comment::FORM_CHAIN_TO));
+        if($data = $this->getByIndex(Comment::FORM_CHAIN_TO)) {
+            return explode(",",$data);
+        } else {
+            return null;
+        }
     }
 
     /**
      * @return \QDL\Comment
      */
     public function form_chain_from($fields) {
-        $this->comments[Comment::FORM_CHAIN_FROM] = implode(",",$fields);
+        if(is_array($fields) && count($fields)) {
+            $this->comments[Comment::FORM_CHAIN_FROM] = implode(",",$fields);
+        }
         return $this;
     }
 
     public function getFormChainFrom() {
-        return explode(",",$this->getByIndex(Comment::FORM_CHAIN_FROM));
+        if($data = $this->getByIndex(Comment::FORM_CHAIN_FROM)) {
+            return explode(",",$data);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -367,7 +379,7 @@ class Comment
 
         if(array_key_exists($index,$this->comments)) {
             $value = $this->comments[$index];
-            if($value == -1) {
+            if($value == -1 || empty($value) || is_null($value) || trim($value) == "") {
                 return null;
             } else {
                 return $value;
