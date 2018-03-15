@@ -31,6 +31,7 @@ class Comment
     const FORM_CHAIN_FROM = 22;
     const FORM_PASSWORD = 23;
     const GRID_FIXED = 24;
+    const FORM_FILE = 25;
 
     protected function defaultComment($comment = "") {
         $this->comments = [
@@ -58,6 +59,7 @@ class Comment
             Comment::FORM_CHAIN_FROM => "",
             Comment::FORM_PASSWORD => 0,
             Comment::GRID_FIXED => 0,
+            Comment::FORM_FILE => 0,
         ];
     }
 
@@ -347,6 +349,18 @@ class Comment
 
     public function getFormPassword() {
         return $this->getByIndex(Comment::FORM_PASSWORD);
+    }
+
+    /**
+     * @return \QDL\Comment
+     */
+    public function form_file() {
+        $this->comments[Comment::FORM_FILE] = 1;
+        return $this;
+    }
+
+    public function getFormFile() {
+        return $this->getByIndex(Comment::FORM_FILE);
     }
 
     /**
