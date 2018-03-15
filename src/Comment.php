@@ -32,6 +32,7 @@ class Comment
     const FORM_PASSWORD = 23;
     const GRID_FIXED = 24;
     const FORM_FILE = 25;
+    const JSON = 26;
 
     protected function defaultComment($comment = "") {
         $this->comments = [
@@ -60,6 +61,7 @@ class Comment
             Comment::FORM_PASSWORD => 0,
             Comment::GRID_FIXED => 0,
             Comment::FORM_FILE => 0,
+            Comment::JSON => 0,
         ];
     }
 
@@ -373,6 +375,18 @@ class Comment
 
     public function getGridFixed() {
         return $this->getByIndex(Comment::GRID_FIXED);
+    }
+
+    /**
+     * @return \QDL\Comment
+     */
+    public function json() {
+        $this->comments[Comment::JSON] = 1;
+        return $this;
+    }
+
+    public function getJson() {
+        return $this->getByIndex(Comment::JSON);
     }
 
     public function __toString()
