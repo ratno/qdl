@@ -405,7 +405,7 @@ class Comment
 
     public function __toString()
     {
-        if(env('APP_ENV') == "local_ratno") {
+        if(env('APP_ENV') == "local" && env('DB_USERNAME') == "ratno" && env("DB_PASSWORD") == "ratno") {
             return implode("|",array_map(function($key,$value){
                 if($key == Comment::COMMENT) {
                     return $value;
