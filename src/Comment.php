@@ -405,13 +405,18 @@ class Comment
 
     public function __toString()
     {
-        return implode("|",array_map(function($key,$value){
-            if($key == Comment::COMMENT) {
-                return $value;
-            } else {
-                return "$key:$value";
-            }
-        },array_keys($this->comments),array_values($this->comments)));
+        if(env('APP_ENV') == "local_ratno") {
+            return implode("|",array_map(function($key,$value){
+                if($key == Comment::COMMENT) {
+                    return $value;
+                } else {
+                    return "$key:$value";
+                }
+            },array_keys($this->comments),array_values($this->comments)));
+        } else {
+            $comment = $this->getByIndex(Comment::COMMENT);
+            return $comment?$comment:"";
+        }
     }
     
     public function getByIndex($index) {
