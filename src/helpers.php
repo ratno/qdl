@@ -34,7 +34,7 @@ if (!function_exists('prepare_file_column_save')) {
         $out = [];
         if(count($value)) {
             foreach($value as $item) {
-                $item['url'] = substr($item['url'],stripos($item['url'],"api/upload"));
+                $item['url'] = substr($item['url'],stripos($item['url'],"api/uploads"));
                 $out[] = $item;
             }
         }
@@ -50,7 +50,7 @@ if (!function_exists('prepare_file_column_read')) {
         if($array) {
             foreach ($array as $item) {
                 // check kalau urlnya
-                if(preg_match("/(api\/upload)/",$item['url'])) {
+                if(preg_match("/(api\/uploads)/",$item['url'])) {
                     $item['url'] = request()->getSchemeAndHttpHost() . "/" . $item['url'];
                 }
 
@@ -58,5 +58,39 @@ if (!function_exists('prepare_file_column_read')) {
             }
         }
         return $out;
+    }
+}
+
+if (!function_exists('upload_store')) {
+    function upload_store($table_name, $column_name)
+    {
+        $upload_file = $column_name. '_file';
+        if (request()->file($upload_file)->isValid()) {
+            $folder = "/$table_name/" . date("Y/m/d") . "/$column_name/";
+            request()->$upload_file->store("uploads/" . $folder);
+
+            return [
+                "status" => "ok",
+                "name" => request()->$upload_file->getClientOriginalName(),
+                "path" => url("/api/uploads/" . str_replace("/", "____", $folder . request()->$upload_file->hashName()))
+            ];
+        } else {
+            return [
+                "status" => "error",
+                "message" => "File gagal di-upload",
+                "http_status_code" => 500
+            ];
+        }
+    }
+}
+
+if (!function_exists('upload_read')) {
+    function upload_read($filename)
+    {
+        $path = storage_path('app/uploads/' . str_replace("____", "/", $filename));
+
+        if (!\File::exists($path)) abort(404);
+
+        return $path;
     }
 }
